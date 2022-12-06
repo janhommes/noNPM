@@ -1,0 +1,33 @@
+{
+  "name": "nonpm",
+  "version": "0.2.6",
+  "main": "index.js",
+  "author": "Jan Hommes <jan.hommes@cumulocity.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf node_modules **/node_modules",
+    "verdaccio": "verdaccio -c tools/verdaccio/config.yaml",
+    "build": "yarn build:nonpm && yarn build:cli && yarn build:web",
+    "build:cli": "yarn workspace @no-npm/cli build",
+    "build:nonpm": "yarn workspace @no-npm/nonpm build",
+    "build:web": "yarn workspace @no-npm/web build",
+    "publish:npm": "npm publish packages/nonpm && npm publish packages/cli && npm publish packages/web"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/web",
+      "packages/cli",
+      "packages/nonpm"
+    ],
+    "nohoist": [
+      "**/prismjs",
+      "**/prismjs/**",
+      "**/marked",
+      "**/marked/**"
+    ]
+  },
+  "dependencies": {
+    "verdaccio": "^5.18.0"
+  }
+}

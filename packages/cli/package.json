@@ -1,0 +1,39 @@
+{
+  "name": "@no-npm/cli",
+  "version": "0.2.6",
+  "description": "The not only NPM project helps you to run micro frontends directly from a npm package.",
+  "author": "Jan Hommes",
+  "license": "MIT",
+  "bin": {
+    "nonpm": "public_api.js"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "start": "nonpm",
+    "start:dev": "tsc && nonpm"
+  },
+  "dependencies": {
+    "@nestjs/core": "^9.0.0",
+    "@nestjs/common": "^9.0.0",
+    "@no-npm/nonpm": "0.2.6",
+    "commander": "^5.1.0",
+    "lodash": "^4.17.15",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "rxjs": "^6.5.4",
+    "yargs": "^15.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "@types/lodash": "~4.14.190",
+    "ts-loader": "^9.2.3",
+    "ts-node": "^10.0.0",
+    "tsconfig-paths": "^4.1.0",
+    "typescript": "^4.7.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/janhommes/noNPM.git"
+  }
+}

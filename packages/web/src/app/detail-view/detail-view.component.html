@@ -1,0 +1,24 @@
+<article>
+  <mat-spinner *ngIf="isLoading && !isError"></mat-spinner>
+  <div class="not__found" *ngIf="isError">
+    <mat-icon color="warn">warning</mat-icon>
+    <h2>Sorry, we cannot find this package.</h2>
+  </div>
+  <div class="quick__copy" *ngVar="(importPath$ | async) as importPath" [ngClass]="{ hidden: isLoading || isError }">
+    <mat-slide-toggle color="primary" [(ngModel)]="quickCopyDynamic">{{
+      quickCopyDynamic ? "dynamic" : "static"
+    }}</mat-slide-toggle>
+    <code>
+      <pre>{{ getPath(importPath) }}</pre>
+    </code>
+    <button mat-icon-button matSuffix (click)="copy(importPath)">
+      <mat-icon>content_copy</mat-icon>
+    </button>
+  </div>
+  <markdown
+    [src]="(readmePath$ | async) || undefined"
+    (load)="onLoad()"
+    (error)="onError()"
+    [ngClass]="{ hidden: isLoading || isError }"
+  ></markdown>
+</article>

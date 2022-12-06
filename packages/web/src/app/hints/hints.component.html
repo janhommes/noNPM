@@ -1,0 +1,20 @@
+<fieldset *ngIf="randomNumber === 0">
+  <legend>To add a supported package add `serve` to your package.json:</legend>
+  <pre><code>{{'{'}}
+{{'   "serve": "your/path/to/folder/or/file/to/serve.js"'}}
+{{'}'}}</code></pre>
+</fieldset>
+
+<fieldset *ngIf="randomNumber === 1">
+  <legend>To use a package import it via:</legend>
+  <pre><code>// static
+import {{'{'}} export {{'}'}} from 'https://noNPM.io/@scope/name';
+// dynamic
+import('https://noNPM.io/@scope/name').then((module) => console.log(module));</code></pre>
+</fieldset>
+
+
+<fieldset *ngIf="randomNumber === 2">
+  <legend>I have no idea if this anyhow helps:</legend>
+  <pre><code>¯\(◉◡◔)/¯ modules are hard.</code></pre>
+</fieldset>

@@ -1,0 +1,27 @@
+<div
+  class="main__content"
+  [ngClass]="{
+    main__content__routed: appState.isResultShown$ | async
+  }"
+>
+  <header>
+    <h1 (click)="goHome()" title="not only NPM"><span>no</span>NPM</h1>
+    <app-search></app-search>
+    <app-search-result></app-search-result>
+  </header>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer>
+    <app-hints></app-hints>
+    <div class="main__links">
+      <a href="https://github.com/janhommes/nonpm/docs/details.md"
+        >Learn more</a
+      >
+      | <a href="https://github.com/janhommes/nonpm">Github</a> |
+      <a href="https://github.com/janhommes/nonpm/docs/about.md">Imprint</a>
+    </div>
+  </footer>
+</div>

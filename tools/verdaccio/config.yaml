@@ -1,0 +1,25 @@
+storage: ./../../.tmp/verdaccio
+max_body_size: 100mb
+auth:
+  htpasswd:
+    file: ./htpasswd
+uplinks:
+  yarn:
+    url: https://registry.yarnpkg.com
+    timeout: 5s
+    max_fails: 5
+  npmjs:
+    url: https://registry.npmjs.org/
+    timeout: 10s
+    max_fails: 5
+packages:
+  '@*/*':
+    access: $all
+    publish: $all
+    proxy: npmjs
+  '**':
+    access: $all
+    publish: $all
+    proxy: npmjs
+logs:
+  - {type: stdout, format: pretty, level: http}

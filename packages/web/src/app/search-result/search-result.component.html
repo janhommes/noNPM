@@ -1,0 +1,28 @@
+<div class="dropdown" *ngIf="(appState.searchTerm$ | async) !== ''">
+  <mat-list>
+    <ng-container *ngIf="(appState.searchResults$ | async).length === 0">
+      <mat-list-item class="item">
+        <div mat-line class="title">No result found :(</div>
+        <div mat-line class="desc">
+          There seems to be no micro frontend deployed with this name. Refine
+          your search word.
+        </div>
+      </mat-list-item>
+    </ng-container>
+    <ng-container *ngFor="let result of appState.searchResults$ | async">
+      <mat-list-item class="item" (click)="open(result)">
+        <img src="/assets/package.svg" />
+        <div mat-line class="title">{{ result.name }}</div>
+        <div mat-line class="desc">{{ result.description }}</div>
+        <mat-chip-list mat-line aria-label="keywords">
+          <mat-chip
+            *ngFor="let keyword of result.keywords"
+            (click)="searchForKeyword(keyword, $event)"
+            >{{ keyword }}</mat-chip
+          >
+        </mat-chip-list>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </ng-container>
+  </mat-list>
+</div>

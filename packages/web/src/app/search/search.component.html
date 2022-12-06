@@ -1,0 +1,20 @@
+<mat-form-field appearance="outline">
+  <mat-label>Search for packages</mat-label>
+  <input
+    matInput
+    #input
+    [(ngModel)]="searchTerm"
+    type="search"
+    placeholder="e.g.'@no-npm/web'"
+  />
+  <button mat-icon-button matSuffix (click)="search()">
+    <mat-icon>search</mat-icon>
+  </button>
+  <mat-hint>
+    {{
+      searchTerm.length === 0
+        ? "Find packages that are supported as micro frontend."
+        : ""
+    }}
+  </mat-hint>
+</mat-form-field>
