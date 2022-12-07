@@ -1,0 +1,14 @@
+{
+  "name": "@no-npm/example",
+  "version": "2.0.0",
+  "description": "An example how you can use noNPM.",
+  "main": "index.js",
+  "private": false,
+  "keywords": [],
+  "author": "Jan Hommes",
+  "license": "MIT",
+  "serve": {
+    "url": "index.js",
+    "demo": "index.html"
+  }
+}

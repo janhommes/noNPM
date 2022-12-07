@@ -11,7 +11,7 @@
     </ng-container>
     <ng-container *ngFor="let result of appState.searchResults$ | async">
       <mat-list-item class="item" (click)="open(result)">
-        <img src="/assets/package.svg" />
+        <img [src]="baseHref + '/assets/package.svg'" />
         <div mat-line class="title">{{ result.name }}</div>
         <div mat-line class="desc">{{ result.description }}</div>
         <mat-chip-list mat-line aria-label="keywords">

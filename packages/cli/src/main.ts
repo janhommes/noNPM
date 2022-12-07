@@ -67,6 +67,7 @@ program
     "log,error,warn,debug"
   )
   .action((options) => {
+    console.log(`noNPM CLI started ${version} on ${options.port}`);
     const config: NoNpmConfig = {
       PORT: options.port,
       STORAGE: options.storage,

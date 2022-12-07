@@ -1,6 +1,6 @@
 {
   "name": "nonpm",
-  "version": "0.2.6",
+  "version": "0.2.10",
   "main": "index.js",
   "author": "Jan Hommes <jan.hommes@cumulocity.com>",
   "license": "MIT",

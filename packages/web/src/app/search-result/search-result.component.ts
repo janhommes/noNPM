@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 import { Router } from '@angular/router';
+import { APP_BASE_HREF } from '@angular/common';
 
 @Component({
   selector: 'app-search-result',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./search-result.component.less'],
 })
 export class SearchResultComponent implements OnInit {
-  constructor(public appState: AppStateService, private router: Router) {}
+  constructor(public appState: AppStateService, private router: Router, @Inject(APP_BASE_HREF) public baseHref: string) {}
 
   ngOnInit(): void {}
 

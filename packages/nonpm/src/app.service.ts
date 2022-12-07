@@ -9,6 +9,7 @@ import { join } from 'path';
 import { NoNpmConfig } from './config';
 import { compareVersions } from 'compare-versions';
 import { Collection, MongoClient, ServerApiVersion } from 'mongodb';
+import { omit } from 'lodash';
 
 @Injectable()
 export class AppService implements OnApplicationShutdown {
@@ -42,20 +43,21 @@ export class AppService implements OnApplicationShutdown {
 
   private async useMongoDbStorage(packageJson: any) {
     const entity = await this.collection.findOne({
-      'item.name': packageJson.name,
+      name: packageJson.name,
     });
 
     if (entity) {
-      this.updateEntity(entity, packageJson);
-      await this.collection.updateOne(
-        { 'item.name': packageJson.name },
-        entity,
-      );
+      const newItem = this.updateEntity(entity, packageJson);
+      Logger.debug('Updating entry in DB');
+      await this.collection.replaceOne({ name: packageJson.name }, newItem);
+      Logger.debug('Entry updated');
     } else {
+      Logger.debug('Insert entry in DB');
       await this.collection.insertOne({
         ...packageJson,
         _version: { [packageJson.version]: packageJson },
       });
+      Logger.debug('Entry insert');
     }
   }
 
@@ -85,7 +87,8 @@ export class AppService implements OnApplicationShutdown {
       ({ name }) => name === packageJson.name,
     );
     if (index > -1) {
-      this.updateEntity(this.content[index], packageJson);
+      const newItem = this.updateEntity(this.content[index], packageJson);
+      this.content[index] = newItem;
     } else {
       this.content.push({
         ...packageJson,
@@ -98,11 +101,11 @@ export class AppService implements OnApplicationShutdown {
   private updateEntity(item: any, packageJson: any) {
     const versions = item._version;
     if (compareVersions(packageJson.version, item.version)) {
-      item = {};
-      item = {
+      const newItem = {
         ...packageJson,
-        _version: { ...versions, [packageJson.version]: packageJson },
+        _version: { ...versions, [item.version]: omit(item, '_version') },
       };
+      return newItem;
     } else {
       item._version[packageJson.version] = packageJson;
     }
@@ -143,7 +146,7 @@ export class AppService implements OnApplicationShutdown {
           },
         },
       ]);
-      return test.toArray();
+      return test.map((item) => omit(item, '_version')).toArray();
     }
   }
 

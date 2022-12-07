@@ -1,8 +1,9 @@
 {
   "name": "@no-npm/web",
   "description": "Web interface to browse noNPM supported packages.",
-  "version": "0.2.6",
+  "version": "0.2.10",
   "author": "Jan Hommes",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

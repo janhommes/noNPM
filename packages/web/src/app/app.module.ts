@@ -37,4 +37,6 @@ import { environment } from 'src/environments/environment';
   providers: [{ provide: APP_BASE_HREF, useValue: environment.baseUrl }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {}
+}

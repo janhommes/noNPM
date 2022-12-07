@@ -1,6 +1,6 @@
 {
   "name": "@no-npm/cli",
-  "version": "0.2.6",
+  "version": "0.2.10",
   "description": "The not only NPM project helps you to run micro frontends directly from a npm package.",
   "author": "Jan Hommes",
   "license": "MIT",
@@ -16,7 +16,7 @@
   "dependencies": {
     "@nestjs/core": "^9.0.0",
     "@nestjs/common": "^9.0.0",
-    "@no-npm/nonpm": "0.2.6",
+    "@no-npm/nonpm": "0.2.10",
     "commander": "^5.1.0",
     "lodash": "^4.17.15",
     "reflect-metadata": "^0.1.13",

@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <script type="module">
+      import { remoteHello } from './index.js';
+
+      document.getElementById('versions').append(remoteHello());
+    </script>
+  </head>
+  <body>
+    <h1>Version history:</h1>
+    <pre id="versions"></pre>
+  </body>
+</html>

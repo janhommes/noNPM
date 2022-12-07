@@ -29,6 +29,12 @@ export class AppController {
     res.redirect(this.config.DEFAULT_APP);
   }
 
+  @Get('/browse/health')
+  health() {
+    Logger.debug('Health status returned');
+    return { ok: true };
+  }
+
   @Get('/browse/search/:term')
   async findPackages(@Param('term') term) {
     Logger.debug(`Searching for term "${term}"`);
